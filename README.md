@@ -36,7 +36,7 @@
 - has_many :tags through vedeo_tags
 - has_many :vedeo_tags
 - has_many :favorites
-- has_many :playlists through :vedeo_playlists
+- has_many :playlists, through: :vedeo_playlists
 - has_many :vedeo_playlists
 
 ## tags テーブル
@@ -44,34 +44,26 @@
 | Column        | Type       | Options                        |
 | ------------- | -----------| ------------------------------ |
 | name          | string     | null: false                    |
-|               | integer    |                                |
+| tagging_count | integer    |                                |
 
 ### Association
-- has_many :vedeos through :vedeo_tags
-- has_many :vedeo_tags
+- has_many :vedeos
+- unique: true
 
-## vedeo_tags テーブル
+## taggings テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | -----------| ------------------------------ |
-| vedeo         | references | foreign_key: true              |
-| tag           | references | foreign_key: true              |
+| tag_id        | references | foreign_key: true              |
+| taggable_type | references | foreign_key: true              |
+| taggable_id   | references | foreign_key: true              |
+| tagger_type   | references | foreign_key: true              |
+| tagger_id     | references | foreign_key: true              |
+| content       | references | foreign_key: true              |
 
 
 ### Association
 - has_many :tags
-- has_many :vedeos
-
-## favorites テーブル
-
-| Column        | Type       | Options                        |
-| ------------- | -----------| ------------------------------ |
-| vedeo         | references | foreign_key: true              |
-| user          | references | foreign_key: true              |
-
-### Association
-- belongs_to :user
-- belongs_to :vedeo
 
 ## playlists テーブル
 
@@ -83,7 +75,7 @@
 
 ### Association
 - belongs_to :user
-- has_many :vedeos through :vedeo_playlists
+- has_many :vedeos, through: :vedeo_playlists
 - has_many :vedeo_playlists
 
 ## vedeo_playlists テーブル
