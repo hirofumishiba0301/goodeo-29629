@@ -58,22 +58,18 @@
 </div>
  <div class='nav'>
     <ul class='purchase-btn'>
-        <%# if user_signed_in? && current_user.id %>
-          <li><%#= link_to "投稿", new_video_path, method: :get , class: "purchase-btn-text"%> </li> 
-          <li><%#= link_to "Pli作成", new_playlist_path, method: :delete , class: "purchase-btn-text"%> </li> 
-          <li><%#= link_to "Pli一覧", new_playlist_path, method: :delete , class: "purchase-btn-text"%> </li> 
-          <li><%#= link_to image_tag("search.png", class: "search-button", id:"search-btn"), videos_path, method: :get %>
-          <li><%#= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "purchase-btn-text"%> </li> 
-        <%# else %>
-        <li><%= link_to 'ログイン', "#",method: :get, class: "purchase-btn-text" %></li>
-        <li><%= link_to '新規登録', "#",method: :get , class: "purchase-btn-text" %></li>
-        <li><%= link_to image_tag("search.png", class: "search-button", id:"search-btn"), videos_path, method: :get %>
-         
-        </li> 
-        <li><%#= link_to 'ログイン', new_user_session_path,method: :get, class: "purchase-btn-text" %></li>
-        <li><%#= link_to '新規登録', new_user_registration_path,method: :get , class: "purchase-btn-text" %></li>
-        
-        <%# end %>
+        <% if user_signed_in? && current_user.id %>
+          <li><%= link_to "投稿", new_video_path, method: :get , class: "purchase-btn-text"%> </li> 
+          <li><%= link_to "Pli作成", new_playlist_path, method: :delete , class: "purchase-btn-text"%> </li> 
+          <li><%= link_to "Pli一覧", new_playlist_path, method: :delete , class: "purchase-btn-text"%> </li> 
+          <li><%= link_to image_tag("search.png", class: "search-button", id:"search-btn"), videos_path, method: :get %>
+          <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete , class: "purchase-btn-text"%> </li> 
+        <% else %>
+          <li><%= link_to 'ログイン', new_user_session_path,method: :get, class: "purchase-btn-text" %></li>
+          <li><%= link_to '新規登録', new_user_registration_path,method: :get , class: "purchase-btn-text" %></li>
+          <li><%= link_to image_tag("search.png", class: "search-button", id:"search-btn"), videos_path, method: :get %>
+          </li> 
+        <% end %>
     </ul>
   <div class='search-bar-contents'>
     <form class="search-form" action="#">
