@@ -28,7 +28,7 @@
 | info          | text       | null: false                    |
 | category_id   | integer    | null: false                    |
 | goodjob       | integer    |                                |
-| view          | integer    |                                |
+| views         | integer    |                                |
 |               | integer    |                                |
 
 ### Association
