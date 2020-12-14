@@ -16,10 +16,10 @@
 ### Association
 - has_many :favorites
 - has_many :playlists
-- has_many :vedeos
+- has_many :videos
 
 
-## vedeos テーブル
+## videos テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | -----------| ------------------------------ |
@@ -33,11 +33,9 @@
 
 ### Association
 - belongs_to :user
-- has_many :tags through vedeo_tags
-- has_many :vedeo_tags
-- has_many :favorites
-- has_many :playlists, through: :vedeo_playlists
-- has_many :vedeo_playlists
+- has_many :tags
+- has_many :playlists, through: :video_playlists
+- has_many :video_playlists
 
 ## tags テーブル
 
@@ -48,6 +46,7 @@
 
 ### Association
 - has_many :vedeos
+- belongs_to :taggings
 - unique: true
 
 ## taggings テーブル
@@ -75,19 +74,19 @@
 
 ### Association
 - belongs_to :user
-- has_many :vedeos, through: :vedeo_playlists
-- has_many :vedeo_playlists
+- has_many :videos, through: :video_playlists
+- has_many :video_playlists
 
-## vedeo_playlists テーブル
+## video_playlists テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | -----------| ------------------------------ |
-| vedeo         | references | foreign_key: true              |
+| video         | references | foreign_key: true              |
 | playlist      | references | foreign_key: true              |
 
 
 ### Association
-- has_many :vedeos
+- has_many :videos
 - has_many :playlists
 
 
