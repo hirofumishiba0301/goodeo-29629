@@ -1,9 +1,13 @@
 <%= render "shared/header" %>
-  <div class="video-new">
+  <div class="video-contents">
       <div class="video-left">
+        <div class="video-left-titlefield">
+        <h2 class="items-sell-title"># 投稿動画プレビュー</h2>
+        </div>
+        <div class="video-left-previewfield", id="preview-field"></div>
       </div>
       <div class="items-sell-main">
-        <h2 class="items-sell-title">動画の情報を入力</h2>
+        <h2 class="items-sell-title"># 動画の情報を入力</h2>
         <%= form_with model: @video,url: videos_path,local: true do |f| %>
 
         <%=render 'shared/error_messages', model: f.object %>
@@ -22,6 +26,20 @@
           </div>
         </div>
         <%# /投稿動画 %>
+        <%# サムネ画像 %>
+        <div class="img-upload">
+          <div class="weight-bold-text">
+            サムネイル画像
+            <span class="indispensable">必須</span>
+          </div>
+          <div class="click-upload">
+            <p>
+              クリックしてファイルをアップロード
+            </p>
+            <%= f.file_field :poster, id:"item-image" %>
+          </div>
+        </div>
+        <%# /サムネ画像 %>
         <%# 動画名と動画説明 %>
         <div class="new-items">
           <div class="weight-bold-text">
@@ -31,20 +49,19 @@
           <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"動画名（必須 40文字まで)", maxlength:"40" %>
           <div class="items-explain">
             <div class="weight-bold-text">
-              商品の説明
+              動画の説明
               <span class="indispensable">必須</span>
             </div>
-            <%= f.text_area :info, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年に撮影した動画です。" %>
+            <%= f.text_area :info, class:"items-text", id:"item-info", placeholder:"動画の説明（必須 1,000文字まで）" %>
           </div>
         </div>
         <%# /動画名と動画説明 %>
 
         <%# 動画のカテゴリ %>
         <div class="items-detail">
-          <div class="weight-bold-text">商品の詳細</div>
           <div class="form">
             <div class="weight-bold-text">
-              カテゴリー
+              動画カテゴリー
               <span class="indispensable">必須</span>
             </div>
             <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
@@ -52,26 +69,6 @@
         </div>
         <%# /動画のカテゴリ %>
 
-
-        <%# 注意書き %>
-        <div class="caution">
-          <p class="sentence">
-            <a href="#">禁止されている動画、</a>
-            <a href="#">行為</a>
-            を必ずご確認ください。
-          </p>
-          <p class="sentence">
-            また
-            <a href="#">偽ブランドの販売</a>
-            は犯罪であり処罰される可能性があります。
-          </p>
-          <p class="sentence">
-            また、出品をもちまして
-            <a href="#">加盟店規約</a>
-            に同意したことになります。
-          </p>
-        </div>
-        <%# /注意書き %>
         <%# 下部ボタン %>
         <div class="sell-btn-contents">
           <%= f.submit "投稿する" ,class:"sell-btn" %>
@@ -80,6 +77,6 @@
         <%# /下部ボタン %>
       </div>
       <% end %>
-    <%= render "shared/footer"%>
     </div>
   </div>
+<%= render "shared/footer"%>

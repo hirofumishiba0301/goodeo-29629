@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_134458) do
+ActiveRecord::Schema.define(version: 2020_12_15_140700) do
+
+  create_table "thumbnails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "video_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["video_id"], name: "index_thumbnails_on_video_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.string "first_name_kana", null: false
@@ -42,5 +49,6 @@ ActiveRecord::Schema.define(version: 2020_12_14_134458) do
     t.index ["user_id"], name: "index_videos_on_user_id"
   end
 
+  add_foreign_key "thumbnails", "videos"
   add_foreign_key "videos", "users"
 end
