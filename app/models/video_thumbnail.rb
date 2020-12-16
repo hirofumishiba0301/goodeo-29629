@@ -9,7 +9,7 @@ class VideoThumbnail
   end
 
   def save
-    video = Video.create!(user_id: user_id, name: name, info: info, category_id: category_id, image: image)
-    Thumbnail.create(video_id: video.id, poster: poster)
+    video = Video.create!(user_id: user_id, name: name, info: info, category_id: category_id, image: image, poster: poster)
+    Thumbnail.create(video_id: video.id)
   end
 end

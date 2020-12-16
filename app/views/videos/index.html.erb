@@ -6,13 +6,11 @@
     
     <ul class='item-lists'>
     <% if @videos.present? %>
-     <% "#".each do |video| %>
-      <%# 動画のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
+     <% @videos.each do |video| %>
       <li class='list'>
         <%= link_to video_path(video.id),method: :get do %>
         <div class='item-img-content'>
-          <%= image_tag video.image, class: "item-img" %>
-
+          <%= image_tag video.poster, class: "item-img" %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -32,7 +30,7 @@
       <% end %>
       <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
       <%# 商品がない場合のダミー %>
-      <%# if @videos.blank? %>
+      <% if @videos.blank? %>
           <li class='list'>
             <%= link_to '#' do %>
             <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
@@ -50,7 +48,7 @@
             </div>
             <% end %>
           </li>
-        <%# end %>
+        <% end %>
      <%# /商品がない場合のダミー %>
     </ul>
   </div>

@@ -2,6 +2,8 @@ class VideosController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
+    @videos = Video.includes(:user).order('created_at DESC')
+    @thumbnail = Thumbnail.includes(:user)
   end
 
   def new
