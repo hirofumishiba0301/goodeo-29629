@@ -5,12 +5,13 @@ class VideosController < ApplicationController
   end
 
   def new
-    @video = Video.new
+    @video_thumbnail = VideoThumbnail.new
   end
 
   def create
-    @video = Video.new(video_params)
-    if @video.save
+    @video_thumbnail = VideoThumbnail.new(video_thumbnail_params)
+    if @video_thumbnail.valid?
+      @video_thumbnail.save
       redirect_to root_path
     else
       render :new
@@ -19,8 +20,8 @@ class VideosController < ApplicationController
 
   private
 
-  def video_params
-    params.require(:video).permit(:image, :name, :info, :category_id, :goodjob, :samnail, :views).merge(user_id: current_user.id)
+  def video_thumbnail_params
+    params.require(:video_thumbnail).permit(:image, :name, :info, :category_id, :goodjob, :poster, :views).merge(user_id: current_user.id)
   end
 
 end

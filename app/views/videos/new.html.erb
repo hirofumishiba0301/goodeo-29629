@@ -8,7 +8,7 @@
       </div>
       <div class="items-sell-main">
         <h2 class="items-sell-title"># 動画の情報を入力</h2>
-        <%= form_with model: @video,url: videos_path,local: true do |f| %>
+        <%= form_with model: @video_thumbnail, url: videos_path, local: true do |f| %>
 
         <%=render 'shared/error_messages', model: f.object %>
 
@@ -22,7 +22,7 @@
             <p>
               クリックしてファイルをアップロード
             </p>
-            <%= f.file_field :image, id:"item-image" %>
+            <%= f.file_field :image, id:"video-image" %>
           </div>
         </div>
         <%# /投稿動画 %>
@@ -36,7 +36,7 @@
             <p>
               クリックしてファイルをアップロード
             </p>
-            <%= f.file_field :poster, id:"item-image" %>
+            <%= f.file_field :poster, id:"video-poster" %>
           </div>
         </div>
         <%# /サムネ画像 %>
