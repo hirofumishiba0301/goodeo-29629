@@ -2,7 +2,7 @@ class VideosController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @videos = Video.includes(:user).order('created_at DESC')
+    @videos = Video.all.includes(:user).order('created_at DESC')
     @thumbnail = Thumbnail.includes(:user)
   end
 
@@ -23,7 +23,7 @@ class VideosController < ApplicationController
   private
 
   def video_thumbnail_params
-    params.require(:video_thumbnail).permit(:image, :name, :info, :category_id, :goodjob, :poster, :views).merge(user_id: current_user.id)
+    params.require(:video_thumbnail).permit(:movie, :name, :info, :category_id, :goodjob, :poster, :views).merge(user_id: current_user.id)
   end
 
 end

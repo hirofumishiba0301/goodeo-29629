@@ -2,6 +2,32 @@
 
 <%# 動画一覧 %>
   <div class='item-contents'>
+    <h2 class='title'><a class="subtitle" href="/videos/new">新規投稿動画</a></h2>
+    
+    <ul class='video-lists'>
+      <% if @videos.present? %>
+        <% @videos.each do |video| %>
+          <li class='list'>
+            <%#= link_to video_path(video.id),method: :get do %>
+            <div class='video-img-content'>
+            <% if video.movie.attached? %>
+              <%=video_tag rails_blob_path(video.movie), autoplay: true, muted: true, controls: true, loop: true %></video>
+            <% end %>
+            </div>
+            <div class='item-info'>
+              <h3 class='item-name'>
+                <%= video.name %>
+              </h3>
+              <div class='video-category'>
+                <span>カテゴリ；<%= video.category.name %></span>
+              </div>
+              </div>
+            </div>
+            <%# end %>
+          </li>
+          <% end %>
+        <% end %>
+    </ul>
     <h2 class='title'><a class="subtitle" href="/items/new">新規投稿動画</a></h2>
     
     <ul class='item-lists'>
@@ -10,7 +36,7 @@
       <li class='list'>
         <%= link_to video_path(video.id),method: :get do %>
         <div class='item-img-content'>
-          <%= image_tag video.poster, class: "item-img" %>
+          <%#= image_tag video.movie, class: "item-img" %>
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -18,9 +44,6 @@
           </h3>
           <div class='item-price'>
             <span>カテゴリ；<%= video.category.name %></span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
             </div>
           </div>
         </div>

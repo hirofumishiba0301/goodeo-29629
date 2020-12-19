@@ -3,6 +3,5 @@ class Video < ApplicationRecord
   belongs_to :user
   has_one :thumbnail
   belongs_to_active_hash :category
-  has_one_attached :image
-  has_one_attached :poster
+  has_one_attached :movie
 end
