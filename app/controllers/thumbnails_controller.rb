@@ -1,0 +1,2 @@
+class ThumbnailsController < ApplicationController
+end

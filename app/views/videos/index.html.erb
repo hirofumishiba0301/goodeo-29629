@@ -1,21 +1,21 @@
 <%= render "shared/header" %>
 
 <%# 動画一覧 %>
-  <div class='item-contents'>
-    <h2 class='title'><a class="subtitle" href="/videos/new">新規投稿動画</a></h2>
+  <div class='newtopics-video-contents'>
+    <h2 class='title'><a class="subtitle" href="/videos/new">新着オススメ動画</a></h2>
     
     <ul class='video-lists'>
       <% if @videos.present? %>
         <% @videos.each do |video| %>
-          <li class='list'>
-            <%#= link_to video_path(video.id),method: :get do %>
+          <li class='video-list'>
+            <%= link_to video_path(video.id),method: :get do %>
             <div class='video-img-content'>
             <% if video.movie.attached? %>
-              <%=video_tag rails_blob_path(video.movie), autoplay: true, muted: true, controls: true, loop: true %></video>
+              <%=video_tag rails_blob_path(video.movie), poster_skip_pipeline: video.thumbnail.poster, autoplay: true, muted: true, controls: true, loop: true %></video>
             <% end %>
             </div>
-            <div class='item-info'>
-              <h3 class='item-name'>
+            <div class='video-info'>
+              <h3 class='video-name'>
                 <%= video.name %>
               </h3>
               <div class='video-category'>
@@ -23,60 +23,68 @@
               </div>
               </div>
             </div>
-            <%# end %>
+            <% end %>
           </li>
           <% end %>
         <% end %>
     </ul>
-    <h2 class='title'><a class="subtitle" href="/items/new">新規投稿動画</a></h2>
-    
-    <ul class='item-lists'>
-    <% if @videos.present? %>
-     <% @videos.each do |video| %>
-      <li class='list'>
-        <%= link_to video_path(video.id),method: :get do %>
-        <div class='item-img-content'>
-          <%#= image_tag video.movie, class: "item-img" %>
-        </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%= video.name %>
-          </h3>
-          <div class='item-price'>
-            <span>カテゴリ；<%= video.category.name %></span>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </li>
-      <% end %>
-      <% end %>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <%# 商品がない場合のダミー %>
-      <% if @videos.blank? %>
-          <li class='list'>
-            <%= link_to '#' do %>
-            <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
-            <div class='item-info'>
-              <h3 class='item-name'>
-                動画を投稿してね！
-              </h3>
-              <div class='item-price'>
-                <span>99999999円<br>(税込み)</span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class:"star-icon" %>
-                  <span class='star-count'>0</span>
-                </div>
-              </div>
-            </div>
-            <% end %>
-          </li>
-        <% end %>
-     <%# /商品がない場合のダミー %>
-    </ul>
   </div>
   <%# /動画一覧 %>
-</div>
+
+<%# カテゴリ別動画一覧 %>
+<div class='category-video-contents'>
+    <ul class='category-videos'>
+    <% if @videos.present? %>
+     <% @videos.each do |video| %>
+      <% if video.category.id == 3 %>
+        <h2 class='title'><a class="category-title">Music</a></h2> 
+          <div class='category-video-lists'>
+            <li class='category-video-list'>
+              <%= link_to video_path(video.id),method: :get do %>
+              <div class='item-img-content'>
+                <%= image_tag video.thumbnail.poster, class: "item-img" %>
+              </div>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  <%= video.name %>
+                </h3>
+                <div class='item-price'>
+                  <span>Good job!<%= video.info %></span>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </li>
+          </div>
+        <% end %>
+      <% if video.category.id == 4 %>
+        <h2 class='title'><a class="category-title">Animation</a></h2> 
+          <div class='category-video-lists'>
+            <li class='list'>
+              <%= link_to video_path(video.id),method: :get do %>
+              <div class='item-img-content'>
+                <%= image_tag video.thumbnail.poster, class: "item-img" %>
+              </div>
+              <div class='item-info'>
+                <h3 class='item-name'>
+                  <%= video.name %>
+                </h3>
+                <div class='item-price'>
+                  <span>Good job!<%= video.info %></span>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </li>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+    </ul>
+  </div>
+  <%# /カテゴリ別動画一覧 %>
+
+<%# ヘッダー操作ボタン %>
  <div class='nav'>
     <ul class='purchase-btn'>
         <% if user_signed_in? && current_user.id %>
@@ -101,4 +109,5 @@
     </form>
   </div>
   </div>
+<%# /ヘッダー操作ボタン %>
 <%= render "shared/footer" %>
