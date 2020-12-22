@@ -10,8 +10,10 @@
           <li class='video-list'>
             <%= link_to video_path(video.id),method: :get do %>
             <div class='video-img-content'>
-            <% if video.movie.attached? %>
+            <% if video.thumbnail.present? %>
               <%=video_tag rails_blob_path(video.movie), poster_skip_pipeline: video.thumbnail.poster, autoplay: true, muted: true, controls: true, loop: true %></video>
+            <% elsif video.movie.attached? %>
+              <%= video_tag rails_blob_path(video.movie), autoplay: true, muted: true, controls: true, loop: true %></video>
             <% end %>
             </div>
             <div class='video-info'>
@@ -33,11 +35,11 @@
 
 <%# カテゴリ別動画一覧 %>
 <div class='category-video-contents'>
+  <h2 class='title'><a class="category-title">Music</a></h2> 
     <ul class='category-videos'>
-    <% if @videos.present? %>
+    <% if @thumbnail.present? %>
      <% @videos.each do |video| %>
       <% if video.category.id == 3 %>
-        <h2 class='title'><a class="category-title">Music</a></h2> 
           <div class='category-video-lists'>
             <li class='category-video-list'>
               <%= link_to video_path(video.id),method: :get do %>
@@ -56,28 +58,7 @@
               <% end %>
             </li>
           </div>
-        <% end %>
-      <% if video.category.id == 4 %>
-        <h2 class='title'><a class="category-title">Animation</a></h2> 
-          <div class='category-video-lists'>
-            <li class='list'>
-              <%= link_to video_path(video.id),method: :get do %>
-              <div class='item-img-content'>
-                <%= image_tag video.thumbnail.poster, class: "item-img" %>
-              </div>
-              <div class='item-info'>
-                <h3 class='item-name'>
-                  <%= video.name %>
-                </h3>
-                <div class='item-price'>
-                  <span>Good job!<%= video.info %></span>
-                  </div>
-                </div>
-              </div>
-              <% end %>
-            </li>
-          </div>
-        <% end %>
+       <% end %>
       <% end %>
     <% end %>
     </ul>
