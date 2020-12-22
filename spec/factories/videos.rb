@@ -4,7 +4,7 @@ FactoryBot.define do
     info {Faker::Lorem.sentence}
     category_id {Faker::Number.between(from: 2, to: 7) }
     association :user
-    association :tumbnail
+    #association :tumbnail
 
     after(:build) do |video|
       video.movie.attach(io: File.open('public/images/test.mov'),filename: 'test.mov')
