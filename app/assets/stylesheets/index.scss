@@ -6,6 +6,84 @@ a {
   background: #f8f8f8;
 }
 
+/* 動画一覧 */
+.newtopics-video-contents{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: darkred;
+}
+
+.video-lists{
+  display: flex;
+  justify-content: space-around;
+  overflow: auto;
+  background-color: grayscale($color: #000000);
+  width: 75vw;
+  height: 75vh;
+  padding-top: 2vh;
+  list-style: none;
+}
+
+.video-list{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  overflow: auto;
+  background-color: gray;
+  padding-top: 2vh;
+  list-style: none;
+}
+
+.video-img-content{
+  display: flex;
+  justify-content: space-around;
+  overflow: auto;
+  background-color: #FFF;
+  width: 95vw;
+  height: 75vh;
+  padding-top: 2vh;
+  padding-left: 2vh;
+  padding-right: 2vh;
+  list-style: none;
+  border-bottom: darkred 2px double;
+}
+
+.video-info{
+  color:darkred;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-name{
+  color: darkred;
+  padding-bottom: 2vh;
+  padding-left: 2vh;
+  align-items: flex-start;
+  font-size: 30px
+}
+
+.video-category{
+  font-family: 'Sacramento', cursive;
+}
+
+.video-goodjob-counts{
+  color: darkred;
+  font-family: 'Sacramento', cursive;
+  border-radius: 3px darkred;
+  background-color: ghostwhite;
+  font-size: x-large;
+  height: 5vh;
+  width: 7vh;
+  text-align: center;
+}
+
+/*カテゴリ一覧*/
+.category-video-contents{
+  height: 25vh;
+}
+
 /* 商品一覧 */
 
 .item-contents {

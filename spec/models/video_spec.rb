@@ -20,6 +20,12 @@ RSpec.describe Video, type: :model do
         expect(@video.errors.full_messages).to include("Movie can't be blank")
       end
 
+      it 'movieが空では登録できない' do
+        @video.movie.attach(io: File.open('public/images/test_image.png'),filename: 'test_image.png')
+        @video.valid?
+        expect(@video.errors.full_messages).to include("Movie content_type is not video")
+      end
+
       it 'nameが空では登録できない' do
         @video.name = nil
         @video.valid?

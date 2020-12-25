@@ -1,5 +1,6 @@
 class VideosController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_video, only: [:show, :edit, :update, :destroy]
 
   def index
     @videos = Video.includes(:user).order('created_at DESC')
@@ -18,6 +19,21 @@ class VideosController < ApplicationController
       render :new
     end
   end
+
+  def show
+  end
+
+  def destroy
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+
+
     #@video_thumbnail = VideoThumbnail.new(video_thumbnail_params)
     #if @video_thumbnail.valid?
      # @video_thumbnail.save
@@ -28,6 +44,11 @@ class VideosController < ApplicationController
   #end
 
   private
+
+  def set_video
+    @video = Video.find(params[:id])
+  end
+
 
   def video_params
     params.require(:video).permit(:movie, :name, :info, :category_id, :goodjob, :views).merge(user_id: current_user.id)
