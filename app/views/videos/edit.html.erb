@@ -8,7 +8,7 @@
       </div>
       <div class="items-sell-main">
         <h2 class="items-sell-title"># 動画の情報を入力</h2>
-        <%= form_with model: @video, url: videos_path, local: true do |f| %>
+        <%= form_with model: @video, url: video_path, method: :patch, local: true do |f| %>
 
         <%=render 'shared/error_messages', model: f.object %>
 
@@ -57,7 +57,7 @@
 
         <%# 下部ボタン %>
         <div class="sell-btn-contents">
-          <%= f.submit "投稿する" ,class:"sell-btn" %>
+          <%= f.submit "編集する" ,class:"sell-btn" %>
           <%=link_to 'もどる', root_path, class:"back-btn" %>
         </div>
         <%# /下部ボタン %>

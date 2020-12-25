@@ -27,9 +27,15 @@ class VideosController < ApplicationController
   end
 
   def edit
+    redirect_to video_path unless @video.user_id == current_user.id
   end
 
   def update
+    if @video.update(video_params)
+      render :show
+    else
+      render :edit
+    end
   end
 
 
