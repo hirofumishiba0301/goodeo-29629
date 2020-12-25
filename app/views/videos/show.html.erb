@@ -33,8 +33,8 @@
  <div class='nav'>
      <ul class='edit-btn'>
         <% if @video.user.id == current_user.id %>
-          <li><%= link_to "動画編集", edit_video_path, method: :get , class: "purchase-btn-text"%> </li> 
-          <li><%= link_to "動画削除", video_path, method: :delete , class: "purchase-btn-text"%> </li> 
+          <li><%= link_to "動画編集", edit_video_path, method: :get, class: "purchase-btn-text"%> </li> 
+          <li><%= link_to "動画削除", video_path, method: :delete, class: "purchase-btn-text"%> </li> 
           <li><%= link_to "サムネイル作成or編集", new_video_thumbnail_path(@video.id), class: "purchase-btn-text"%> </li> 
         <% else %>
           <li><%= link_to 'ログイン', new_user_session_path,method: :get, class: "purchase-btn-text" %></li>

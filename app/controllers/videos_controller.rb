@@ -24,6 +24,12 @@ class VideosController < ApplicationController
   end
 
   def destroy
+    if @video.user_id == current_user.id
+      @video.destroy
+      redirect_to root_path
+    else
+      redirect_to video_path
+    end
   end
 
   def edit
