@@ -2,7 +2,7 @@ class Thumbnail < ApplicationRecord
   belongs_to :video
   has_one_attached :poster
 
-  validates :poster, presence: true
+  validates :poster, :name, presence: true
   validate :thumbnail_type
 
   private

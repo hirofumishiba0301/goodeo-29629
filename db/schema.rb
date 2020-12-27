@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2020_12_16_151924) do
   end
 
   create_table "thumbnails", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "name", null: false
     t.bigint "video_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

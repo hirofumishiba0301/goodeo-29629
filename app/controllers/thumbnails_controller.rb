@@ -1,13 +1,15 @@
 class ThumbnailsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_thumbnail, only: [:show, :edit, :update, :destroy]
-  before_action :set_video, only: [:show, :edit, :update, :destroy, :create]
+  #before_action :set_thumbnail, only: [:show, :edit, :update, :destroy]
+  before_action :set_video, only: [:new, :show, :edit, :update, :destroy, :create]
 
   def index
     @videos = Video.includes(:user).order('created_at DESC')
   end
 
   def new
+    redirect_to root_path unless @video.user_id == current_user.id
+    redirect_to root_path unless @video.thumbnail.blank?
     @thumbnail = Thumbnail.new
   end
 
@@ -22,15 +24,28 @@ class ThumbnailsController < ApplicationController
 
   def edit
     redirect_to video_path unless @video.user_id == current_user.id
+    set_thumbnail
   end
 
   def update
+    set_thumbnail
+    binding.pry
     if @thumbnail.update(thumbnail_params)
-      render :show
+      redirect_to root_path
     else
       render :edit
     end
   end
+
+  def destroy
+    if @video.user_id == current_user.id
+      @thumbnail.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
+  end
+
 
   private
 
@@ -40,11 +55,11 @@ class ThumbnailsController < ApplicationController
 
 
   def set_thumbnail
-    @thumbnail = Thumbnail.find(params[:id])
+    @thumbnail = @video.thumbnail
   end
 
 
   def thumbnail_params
-    params.require(:thumbnail).permit(:poster).merge(video_id: params[:video_id])
+    params.require(:thumbnail).permit(:name, :poster).merge(video_id: params[:video_id])
   end
 end

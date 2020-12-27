@@ -1,16 +1,20 @@
 <%= render "shared/header" %>
   <div class="video-contents">
-      <div class="video-left">
-        <div class="video-left-titlefield">
-        <h2 class="items-sell-title"># 投稿動画プレビュー</h2>
-        </div>
-        <div class="video-left-previewfield", id="preview-field"></div>
-      </div>
       <div class="items-sell-main">
         <h2 class="items-sell-title"># サムネイルの情報を入力</h2>
         <%= form_with model: @thumbnail, url: video_thumbnails_path, local: true do |f| %>
 
         <%=render 'shared/error_messages', model: f.object %>
+
+        <%# サムネイル名 %>
+        <div class="new-items">
+          <div class="weight-bold-text">
+            サムネイル名
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"動画名（必須 40文字まで)", maxlength:"40" %>
+        </div>
+        <%# /サムネイル名 %>
 
         <%# サムネ画像 %>
         <div class="img-upload">

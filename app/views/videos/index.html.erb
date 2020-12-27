@@ -7,10 +7,8 @@
             <div class='newtopics-video-contents'>
               <%= link_to video_path(video.id),method: :get do %>
                   <div class='video-img-content'>
-                      <% if video.thumbnail.present? %>
-                        <%=video_tag rails_blob_path(video.movie), poster_skip_pipeline: video.thumbnail.poster, autoplay: true, muted: true, controls: true, loop: true %></video>
-                      <% elsif video.movie.attached? %>
-                        <%= video_tag rails_blob_path(video.movie), size:"500x500", autoplay: true, muted: true, controls: true, loop: true %></video>
+                      <% if video.movie.attached? %>
+                        <%= video_tag rails_blob_path(video.movie), size:"1000x550", autoplay: false, muted: false, controls: true, loop: true %></video>
                       <% end %>
               <% end %>
                     <div class='video-info'>

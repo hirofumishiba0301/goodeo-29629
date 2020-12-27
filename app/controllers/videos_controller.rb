@@ -24,6 +24,11 @@ class VideosController < ApplicationController
   end
 
   def destroy
+    if @video.thumbnail.present?
+      set_thumbnail
+      @thumbnail.destroy
+    end
+
     if @video.user_id == current_user.id
       @video.destroy
       redirect_to root_path
@@ -37,6 +42,7 @@ class VideosController < ApplicationController
   end
 
   def update
+    binding.pry
     if @video.update(video_params)
       render :show
     else
@@ -56,6 +62,10 @@ class VideosController < ApplicationController
   #end
 
   private
+
+  def set_thumbnail
+    @thumbnail = @video.thumbnail
+  end
 
   def set_video
     @video = Video.find(params[:id])
