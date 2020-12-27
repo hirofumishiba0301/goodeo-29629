@@ -1,61 +1,37 @@
 <%= render "shared/header" %>
 
+<h2 class='title'><a class="subtitle" href="/videos/new">新着オススメ動画</a></h2>
 <%# 動画一覧 %>
-  <div class='item-contents'>
-    <h2 class='title'><a class="subtitle" href="/items/new">新規投稿動画</a></h2>
-    
-    <ul class='item-lists'>
     <% if @videos.present? %>
-     <% "#".each do |video| %>
-      <%# 動画のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <li class='list'>
-        <%= link_to video_path(video.id),method: :get do %>
-        <div class='item-img-content'>
-          <%= image_tag video.image, class: "item-img" %>
+      <% @videos.each do |video| %>
+            <div class='newtopics-video-contents'>
+              <%= link_to video_path(video.id),method: :get do %>
+                  <div class='video-img-content'>
+                      <% if video.movie.attached? %>
+                        <%= video_tag rails_blob_path(video.movie), size:"1000x550", autoplay: false, muted: false, controls: true, loop: true %></video>
+                      <% end %>
+              <% end %>
+                    <div class='video-info'>
+                      <h2 class='video-name'> <%= video.name %></h2>
+                      <div class='video-name-date'>
+                        <%= video.user.nickname %>
+                        (<%= video.created_at %>)
+                      </div>
+                      <div class='video-category'>
+                        <span>Category; <%= video.category.name %></span>
+                      </div>
+                      <button class='video-goodjob-counts' id='goodjob-counts'>
+                        <span>G</span>
+                      </button>
+                    </div>
+                  </div>
+            </div>
+      <% end %>
+    <% end %>
 
-        </div>
-        <div class='item-info'>
-          <h3 class='item-name'>
-            <%= video.name %>
-          </h3>
-          <div class='item-price'>
-            <span>カテゴリ；<%= video.category.name %></span>
-            <div class='star-btn'>
-              <%= image_tag "star.png", class:"star-icon" %>
-              <span class='star-count'>0</span>
-            </div>
-          </div>
-        </div>
-        <% end %>
-      </li>
-      <% end %>
-      <% end %>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-      <%# 商品がない場合のダミー %>
-      <%# if @videos.blank? %>
-          <li class='list'>
-            <%= link_to '#' do %>
-            <%= image_tag "https://s3-ap-northeast-1.amazonaws.com/mercarimaster/uploads/captured_image/content/10/a004.png", class: "item-img" %>
-            <div class='item-info'>
-              <h3 class='item-name'>
-                動画を投稿してね！
-              </h3>
-              <div class='item-price'>
-                <span>99999999円<br>(税込み)</span>
-                <div class='star-btn'>
-                  <%= image_tag "star.png", class:"star-icon" %>
-                  <span class='star-count'>0</span>
-                </div>
-              </div>
-            </div>
-            <% end %>
-          </li>
-        <%# end %>
-     <%# /商品がない場合のダミー %>
-    </ul>
-  </div>
-  <%# /動画一覧 %>
-</div>
+<%# /動画一覧 %>
+
+<%# ヘッダー操作ボタン %>
  <div class='nav'>
     <ul class='purchase-btn'>
         <% if user_signed_in? && current_user.id %>
@@ -80,4 +56,5 @@
     </form>
   </div>
   </div>
+<%# /ヘッダー操作ボタン %>
 <%= render "shared/footer" %>

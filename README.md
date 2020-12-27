@@ -28,14 +28,25 @@
 | info          | text       | null: false                    |
 | category_id   | integer    | null: false                    |
 | goodjob       | integer    |                                |
-| view          | integer    |                                |
+| views         | integer    |                                |
 |               | integer    |                                |
 
 ### Association
 - belongs_to :user
+- has_one :thumbnail
 - has_many :tags
 - has_many :playlists, through: :video_playlists
 - has_many :video_playlists
+
+## thumbnails テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | -----------| ------------------------------ |
+| video         | references | foreign_key: true              |
+|               | integer    |                                |
+
+### Association
+- belongs_to :video
 
 ## tags テーブル
 

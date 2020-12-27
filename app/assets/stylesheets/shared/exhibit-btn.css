@@ -1,12 +1,24 @@
-.purchase-btn {
-  width: 50vh;
-  justify-content: space-around;
+.edit-btn {
+  width: 55vw;
+  justify-content: flex-end;
   display: flex;
   border-radius: 4%;
-  top: 1vh;
+  top: 1px;
   right: 5px;
   position: fixed;
-  padding: 15px;
+  border: single, 3px, floralwhite;
+  list-style: none;
+}
+
+.purchase-btn {
+  width: 55vw;
+  justify-content: flex-end;
+  display: flex;
+  border-radius: 4%;
+  top: 7vh;
+  right: 5px;
+  position: fixed;
+  border: single, 3px, floralwhite;
   list-style: none;
 }
 
@@ -54,9 +66,10 @@
 }
 
 .search-button {
-  width: 5vh;
-  border: 0;
+  height: 5vh;
+  margin-right: 5px;
   cursor: pointer;
+  border: 3px, floralwhite;
   background-color: darkred;
   padding: 8px;
 }

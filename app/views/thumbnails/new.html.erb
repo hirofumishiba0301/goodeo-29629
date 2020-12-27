@@ -1,0 +1,44 @@
+<%= render "shared/header" %>
+  <div class="video-contents">
+      <div class="items-sell-main">
+        <h2 class="items-sell-title"># サムネイルの情報を入力</h2>
+        <%= form_with model: @thumbnail, url: video_thumbnails_path, local: true do |f| %>
+
+        <%=render 'shared/error_messages', model: f.object %>
+
+        <%# サムネイル名 %>
+        <div class="new-items">
+          <div class="weight-bold-text">
+            サムネイル名
+            <span class="indispensable">必須</span>
+          </div>
+          <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"動画名（必須 40文字まで)", maxlength:"40" %>
+        </div>
+        <%# /サムネイル名 %>
+
+        <%# サムネ画像 %>
+        <div class="img-upload">
+          <div class="weight-bold-text">
+            サムネイル画像
+            <span class="indispensable">必須</span>
+          </div>
+          <div class="click-upload">
+            <p>
+              クリックしてファイルをアップロード
+            </p>
+            <%= f.file_field :poster, id:"video-poster" %>
+          </div>
+        </div>
+        <%# /サムネ画像 %>
+
+        <%# 下部ボタン %>
+        <div class="sell-btn-contents">
+          <%= f.submit "作成する" ,class:"sell-btn" %>
+          <%=link_to 'もどる', root_path, class:"back-btn" %>
+        </div>
+        <%# /下部ボタン %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+<%= render "shared/footer"%>

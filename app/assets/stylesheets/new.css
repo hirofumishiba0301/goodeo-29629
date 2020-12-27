@@ -1,0 +1,218 @@
+/* border-bottom: 1px solid #eee; */
+
+.video-contents{
+  display: flex;
+  justify-content: space-between;  
+}
+
+.video-left{
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+}
+
+.video-left-titlefield{
+  height: 7%;
+}
+
+.video-left-previewfield{
+  background-color: darkgray;
+  border: double 5px darkred;
+  height: 93%;
+}
+
+.items-sell-contents {
+  background-color: #f5f5f5;
+  font-family: "Source Sans Pro", Helvetica, Arial, "æ¸¸ã‚´ã‚·ãƒƒã‚¯ä½“", "YuGothic", "ãƒ¡ã‚¤ãƒªã‚ª", "Meiryo", sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: right;
+  flex-direction: column;
+  /*min-width: 500px;*/
+}
+
+.items-sell-header {
+  padding: 5vh 0;
+  text-align: right;
+}
+
+.items-sell-main {
+  background-color: #FFF;
+  width: 30vw;
+  min-width: 450px;
+  padding: 5vh 5vw;
+}
+
+.items-sell-title {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 5vw;
+}
+
+/* 共通 */
+.indispensable {
+  background: darkred;
+  margin-left: 8px;
+  padding: 3px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.weight-bold-text {
+  font-weight: b  old;
+  min-width: 100%;
+  margin-bottom: 10px;
+}
+
+.select-box {
+  height: 30px;
+  width: 100%;
+  background-color: #f5f5f5;
+  padding-left: 20px;
+}
+
+.question {
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: #0099e8;
+  color: #FFF;
+  font-size: 13px;
+  text-align: center;
+  line-height: 20px;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.question-text {
+  display: flex;
+}
+
+/* /共通 */
+
+/* 投稿動画 */
+.img-upload {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 2vh 0;
+}
+
+.click-upload {
+  margin: 5px 0;
+  min-width: 250px;
+}
+
+.click-upload>p {
+  margin-bottom: 5px;
+}
+
+/* /投稿動画 */
+
+/* 動画名と動画説明 */
+.new-items {
+  padding: 2vh 0;
+}
+
+.items-text {
+  width: 100%;
+  padding: 16px 16px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  resize: none;
+}
+
+.items-explain {
+  margin-top: 2vh;
+}
+
+/* /動画名と動画説明 */
+
+/* 動画の詳細など */
+.items-detail {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 2vh 0;
+}
+
+.items-detail>.form {
+  width: 300px;
+  padding: 2vh 0;
+}
+
+.select-box {
+  margin: 2vh 0;
+}
+
+/* /動画の詳細など */
+
+/* 注意書き */
+.caution {
+  padding: 5vh 0;
+}
+
+.sentence>a {
+  color: #0099e8;
+  text-decoration: none;
+}
+
+/* /注意書き */
+
+/* 下部ボタン */
+.sell-btn-contents {
+  width: 100%;
+  text-align: center;
+}
+
+.sell-btn {
+  background: darkred;
+  border: 1px solid darkred;
+  color: #fff;
+  width: 100%;
+  height: 50px;
+  font-size: 14px;
+  margin-bottom: 4vh;
+}
+
+.back-btn {
+  background: #aaa;
+  border: 1px solid #aaa;
+  color: #fff;
+  width: 100%;
+  padding: 15px ;
+  text-decoration: none;
+}
+
+/* /下部ボタン */
+
+.items-sell-footer {
+  background-color: #f5f5f5;
+  width: 60vw;
+  padding: 3ch 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.items-sell-footer>.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 3vh 0;
+}
+
+.menu>li>a {
+  color: black;
+  font-size: 12px;
+  margin: 2vw;
+}
+
+.inc {
+  font-size: 13px;
+}
