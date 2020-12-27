@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root 'videos#index'
   resources :videos do
     resources :thumbnails
+    resources :goodjob, only: [:create, :destroy]
   end
 end

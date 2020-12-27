@@ -4,6 +4,7 @@ class Video < ApplicationRecord
   has_one :thumbnail, dependent: :destroy
   belongs_to_active_hash :category
   has_one_attached :movie
+  has_many :goojob, dependent: :destroy
 
   with_options presence: true do
     validates :name, :info, :user_id, :movie
