@@ -4,7 +4,7 @@
             <div class='show-video-contents'>
                   <div class='video-img-content'>
                       <% if @video.thumbnail.present? %>
-                        <%=video_tag rails_blob_path(@video.movie), size:"1000x550", poster_skip_pipeline: video.thumbnail.poster, autoplay: true, muted: true, controls: true, loop: true %></video>
+                        <%=video_tag rails_blob_path(@video.movie), size:"1000x550", poster_skip_pipeline: @video.thumbnail.poster, autoplay: false, muted: false, controls: true, loop: true %></video>
                       <% elsif @video.movie.attached? %>
                         <%= video_tag rails_blob_path(@video.movie), size:"1000x550", autoplay: false, muted: false, controls: true, loop: true %></video>
                       <% end %>
@@ -38,7 +38,7 @@
           <% if @video.thumbnail.present? %>
             <li><%= link_to "サムネイル編集", new_video_thumbnail_path(@video.id), class: "purchase-btn-text"%> </li> 
           <% else %>
-            <li><%= link_to "サムネイル作成", new_video_thumbnail_path(@video.id), class: "purchase-btn-text"%> </li> 
+            <li><%= link_to "サムネイル作成", edit_video_thumbnail_path(@video.id), class: "purchase-btn-text"%> </li> 
           <% end %>
         <% else %>
           <li><%= link_to 'ログイン', new_user_session_path,method: :get, class: "purchase-btn-text" %></li>

@@ -1,7 +1,7 @@
 class ThumbnailsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_thumbnail, only: [:show, :edit, :update, :destroy]
-  before_action :set_video, only: [:show, :edit, :update, :destroy]
+  before_action :set_video, only: [:show, :edit, :update, :destroy, :create]
 
   def index
     @videos = Video.includes(:user).order('created_at DESC')
@@ -9,7 +9,6 @@ class ThumbnailsController < ApplicationController
 
   def new
     @thumbnail = Thumbnail.new
-    #@video_thumbnail = VideoThumbnail.new
   end
 
   def create
@@ -36,7 +35,7 @@ class ThumbnailsController < ApplicationController
   private
 
   def set_video
-    @video = Video.find(params[:id])
+    @video = Video.find(params[:video_id])
   end
 
 
@@ -46,6 +45,6 @@ class ThumbnailsController < ApplicationController
 
 
   def thumbnail_params
-    params.require(:thumbnail).permit(:poster)
+    params.require(:thumbnail).permit(:poster).merge(video_id: params[:video_id])
   end
 end
