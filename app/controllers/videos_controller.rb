@@ -24,11 +24,6 @@ class VideosController < ApplicationController
   end
 
   def destroy
-    if @video.thumbnail.present?
-      set_thumbnail
-      @thumbnail.destroy
-    end
-
     if @video.user_id == current_user.id
       @video.destroy
       redirect_to root_path
