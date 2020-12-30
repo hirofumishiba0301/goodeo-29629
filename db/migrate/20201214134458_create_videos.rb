@@ -5,7 +5,7 @@ class CreateVideos < ActiveRecord::Migration[6.0]
       t.references :user ,foreign_key: true
       t.text :info ,null: false
       t.integer :category_id ,null: false
-      t.integer :goodjob 
+      t.integer :goodjobs_count 
       t.integer :views 
       t.timestamps
     end

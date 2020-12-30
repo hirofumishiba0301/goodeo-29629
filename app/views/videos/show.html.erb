@@ -15,9 +15,9 @@
                       <div class='video-category'>
                         <span>Category; <%= @video.category.name %></span>
                       </div>
-                      <button class='video-goodjob-counts' id='goodjob-counts'>
-                        <span>G</span>
-                      </button>
+                      <div class='video-goodjob-counts' >
+                        <%= render partial: "goodjobs/goodjob", locals:{video: @video} %>
+                      </div>
                       <div class='video-category'>
                         <span>Info; <%= @video.info %></span>
                       </div>
@@ -30,7 +30,7 @@
 <%# ヘッダー操作ボタン %>
  <div class='nav'>
      <ul class='edit-btn'>
-        <% if @video.user.id == current_user.id %>
+        <% if user_signed_in? && @video.user.id == current_user.id %>
           <li><%= link_to "動画編集", edit_video_path, method: :get, class: "purchase-btn-text"%> </li> 
           <li><%= link_to "動画削除", video_path, method: :delete, class: "purchase-btn-text"%> </li> 
           <% if @video.thumbnail.present? %>
@@ -38,11 +38,6 @@
           <% else %>
             <li><%= link_to "サムネイル作成", new_video_thumbnail_path(@video.id), class: "purchase-btn-text"%> </li> 
           <% end %>
-        <% else %>
-          <li><%= link_to 'ログイン', new_user_session_path,method: :get, class: "purchase-btn-text" %></li>
-          <li><%= link_to '新規登録', new_user_registration_path,method: :get , class: "purchase-btn-text" %></li>
-          <li><%= link_to image_tag("search.png", class: "search-button", id:"search-btn"), videos_path, method: :get %>
-          </li> 
         <% end %>
     </ul>
   </div>

@@ -4,10 +4,10 @@ class Video < ApplicationRecord
   has_one :thumbnail, dependent: :destroy
   belongs_to_active_hash :category
   has_one_attached :movie
-  has_many :goojob, dependent: :destroy
+  has_many :goodjobs, dependent: :destroy
 
   with_options presence: true do
-    validates :name, :info, :user_id, :movie
+    validates :name, :info, :movie
     validates :category_id, numericality: { other_than: 1, message: 'must be other than 1' }
   end
 

@@ -21,15 +21,15 @@
 
 ## videos テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | -----------| ------------------------------ |
-| name          | string     | null: false                    |
-| user          | references | foreign_key: true              |
-| info          | text       | null: false                    |
-| category_id   | integer    | null: false                    |
-| goodjob       | integer    |                                |
-| views         | integer    |                                |
-|               | integer    |                                |
+| Column         | Type       | Options                        |
+| -------------- | -----------| ------------------------------ |
+| name           | string     | null: false                    |
+| user           | references | foreign_key: true              |
+| info           | text       | null: false                    |
+| category_id    | integer    | null: false                    |
+| goodjobs_count | integer    |                                |
+| views          | integer    |                                |
+|                | integer    |                                |
 
 ### Association
 - belongs_to :user
