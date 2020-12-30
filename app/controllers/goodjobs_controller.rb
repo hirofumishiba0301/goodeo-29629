@@ -5,6 +5,9 @@ class GoodjobsController < ApplicationController
     @goodjob = Goodjob.create(user_id: current_user.id, video_id: @video.id)
     @goodjobs = Goodjob.where(video_id: params[:video_id])
     @videos = Video.all
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
   end
 
   def destroy
@@ -12,6 +15,9 @@ class GoodjobsController < ApplicationController
     @goodjob.destroy
     @goodjobs = Goodjob.where(video_id: params[:video_id])
     @videos = Video.all
+    respond_to do |format|
+      format.js {render inline: "location.reload();" }
+    end
   end
 
   def set_video
