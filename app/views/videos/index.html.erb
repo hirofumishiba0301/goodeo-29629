@@ -20,9 +20,9 @@
                       <div class='video-category'>
                         <span>Category; <%= video.category.name %></span>
                       </div>
-                      <button class='video-goodjob-counts' id='goodjob-counts'>
-                        <span>G</span>
-                      </button>
+                      <div class='video-goodjob-counts' >
+                      <%= render partial: "goodjobs/goodjob", locals:{video: video} %>
+                      </div>
                     </div>
                   </div>
             </div>

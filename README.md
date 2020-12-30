@@ -21,28 +21,42 @@
 
 ## videos テーブル
 
-| Column        | Type       | Options                        |
-| ------------- | -----------| ------------------------------ |
-| name          | string     | null: false                    |
-| user          | references | foreign_key: true              |
-| info          | text       | null: false                    |
-| category_id   | integer    | null: false                    |
-| goodjob       | integer    |                                |
-| views         | integer    |                                |
-|               | integer    |                                |
+| Column         | Type       | Options                        |
+| -------------- | -----------| ------------------------------ |
+| name           | string     | null: false                    |
+| user           | references | foreign_key: true              |
+| info           | text       | null: false                    |
+| category_id    | integer    | null: false                    |
+| goodjobs_count | integer    |                                |
+| views          | integer    |                                |
+|                | integer    |                                |
 
 ### Association
 - belongs_to :user
 - has_one :thumbnail
 - has_many :tags
-- has_many :playlists, through: :video_playlists
-- has_many :video_playlists
+- has_many :favorites, through: :video_favorites
+- has_many :video_favorites
+- has_many :goodjob, counter_cache: :goodjob
 
 ## thumbnails テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | -----------| ------------------------------ |
 | video         | references | foreign_key: true              |
+| user          | references | foreign_key: true              |
+|               | integer    |                                |
+
+### Association
+- belongs_to :video
+- belongs_to :user
+
+## thumbnails テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | -----------| ------------------------------ |
+| video         | references | foreign_key: true              |
+| name          | string     | null: false                    |
 |               | integer    |                                |
 
 ### Association
@@ -75,7 +89,7 @@
 ### Association
 - has_many :tags
 
-## playlists テーブル
+## favorites テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | -----------| ------------------------------ |
@@ -85,20 +99,20 @@
 
 ### Association
 - belongs_to :user
-- has_many :videos, through: :video_playlists
-- has_many :video_playlists
+- has_many :videos, through: :video_favorites
+- has_many :video_favorites
 
-## video_playlists テーブル
+## video_favorites テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | -----------| ------------------------------ |
 | video         | references | foreign_key: true              |
-| playlist      | references | foreign_key: true              |
+| favorite      | references | foreign_key: true              |
 
 
 ### Association
 - has_many :videos
-- has_many :playlists
+- has_many :favorites
 
 
 This README would normally document whatever steps are necessary to get the

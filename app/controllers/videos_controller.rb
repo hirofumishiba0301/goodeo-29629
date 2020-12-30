@@ -24,11 +24,6 @@ class VideosController < ApplicationController
   end
 
   def destroy
-    if @video.thumbnail.present?
-      set_thumbnail
-      @thumbnail.destroy
-    end
-
     if @video.user_id == current_user.id
       @video.destroy
       redirect_to root_path
@@ -42,15 +37,12 @@ class VideosController < ApplicationController
   end
 
   def update
-    binding.pry
     if @video.update(video_params)
       render :show
     else
       render :edit
     end
   end
-
-
 
     #@video_thumbnail = VideoThumbnail.new(video_thumbnail_params)
     #if @video_thumbnail.valid?
@@ -63,17 +55,12 @@ class VideosController < ApplicationController
 
   private
 
-  def set_thumbnail
-    @thumbnail = @video.thumbnail
-  end
-
   def set_video
     @video = Video.find(params[:id])
   end
 
-
   def video_params
-    params.require(:video).permit(:movie, :name, :info, :category_id, :goodjob, :views).merge(user_id: current_user.id)
+    params.require(:video).permit(:movie, :name, :info, :category_id, :goodjobs_count, :views).merge(user_id: current_user.id)
   end
   #def video_thumbnail_params
    # params.require(:video_thumbnail).permit(:movie, :name, :info, :category_id, :goodjob, :poster, :views).merge(user_id: current_user.id)
