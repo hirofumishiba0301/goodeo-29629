@@ -1,6 +1,11 @@
 class FavoritesController < ApplicationController
   before_action :set_video
 
+  def index
+    @videos = Video.includes(:user).order('created_at DESC')
+    @favorites = Favorite.includes(:user)
+  end
+
   def create
     @favorite = Favorite.create(user_id: current_user.id, video_id: @video.id)
     #@favorites = Favorite.where(video_id: params[:video_id])

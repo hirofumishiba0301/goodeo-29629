@@ -8,6 +8,9 @@
                       <% end %>
                     <div class='video-info'>
                       <h2 class='video-name'> <%= @video.name %></h2>
+                      <div class='video-goodjob-counts' >
+                        <%= render partial: "favorites/favorite", locals:{video: video} %>
+                      </div>
                       <div class='video-name-date'>
                         <%= @video.user.nickname %>
                         (<%= @video.created_at %>)
