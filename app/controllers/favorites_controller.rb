@@ -1,5 +1,5 @@
 class FavoritesController < ApplicationController
-  before_action :set_video
+  before_action :set_video, only: [:crate, :destroy]
 
   def index
     @videos = Video.includes(:user).order('created_at DESC')

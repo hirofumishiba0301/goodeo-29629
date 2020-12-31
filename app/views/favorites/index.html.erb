@@ -1,50 +1,43 @@
 <%= render "shared/header" %>
 
-<%# 動画詳細 %>
-            <div class='show-video-contents'>
+<h2 class='title'><a class="subtitle" href="/videos/new">お気に入り動画一覧</a></h2>
+<%# 動画一覧 %>
+    <% if @videos.present? %>
+      <% @videos.each do |video| %>
+        <% if Favorite.find_by(user_id: current_user.id, video_id: video.id) %>
+            <div class='newtopics-video-contents'>
+              <%= link_to video_path(video.id),method: :get do %>
                   <div class='video-img-content'>
-                      <% if @video.movie.attached? %>
-                        <%= video_tag rails_blob_path(@video.movie), size:"1000x550", autoplay: false, muted: false, controls: true, loop: true %></video>
+                      <% if video.movie.attached? %>
+                        <%= video_tag rails_blob_path(video.movie), size:"1000x550", autoplay: false, muted: false, controls: true, loop: true %></video>
                       <% end %>
+              <% end %>
                     <div class='video-info'>
-                      <h2 class='video-name'> <%= @video.name %></h2>
-                      <div class='video-category'>
-                        <%= render partial: "favorites/favorite", locals:{video: @video} %>
+                      <h2 class='video-name'> <%= video.name %></h2>
+                      <div class='video-category' >
+                        <%= render partial: "favorites/favorite", locals:{video: video} %>
                       </div>
                       <div class='video-name-date'>
-                        <%= @video.user.nickname %>
-                        (<%= @video.created_at %>)
+                        <%= video.user.nickname %>
+                        (<%= video.created_at %>)
                       </div>
                       <div class='video-category'>
-                        <span>Category; <%= @video.category.name %></span>
+                        <span>Category; <%= video.category.name %></span>
                       </div>
                       <div class='video-goodjob-counts' >
-                        <%= render partial: "goodjobs/goodjob", locals:{video: @video} %>
-                      </div>
-                      <div class='video-category'>
-                        <span>Info; <%= @video.info %></span>
+                        <%= render partial: "goodjobs/goodjob", locals:{video: video} %>
                       </div>
                     </div>
                   </div>
             </div>
+        <% end %>  
+      <% end %>
+    <% end %>
 
-<%# /動画詳細 %>
+<%# /動画一覧 %>
 
 <%# ヘッダー操作ボタン %>
  <div class='nav'>
-     <ul class='edit-btn'>
-        <% if user_signed_in? && @video.user.id == current_user.id %>
-          <li><%= link_to "動画編集", edit_video_path, method: :get, class: "purchase-btn-text"%> </li> 
-          <li><%= link_to "動画削除", video_path, method: :delete, class: "purchase-btn-text"%> </li> 
-          <% if @video.thumbnail.present? %>
-            <li><%= link_to "サムネイル編集", edit_video_thumbnail_path(@video.id), class: "purchase-btn-text"%> </li> 
-          <% else %>
-            <li><%= link_to "サムネイル作成", new_video_thumbnail_path(@video.id), class: "purchase-btn-text"%> </li> 
-          <% end %>
-        <% end %>
-    </ul>
-  </div>
-  <div class='nav'>
     <ul class='purchase-btn'>
         <% if user_signed_in? && current_user.id %>
           <li><%= link_to "動画投稿", new_video_path, method: :get , class: "purchase-btn-text"%> </li> 
