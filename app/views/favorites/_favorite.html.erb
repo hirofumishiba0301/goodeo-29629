@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <% if Favorite.find_by(user_id: current_user.id, video_id: video.id) %>
+  <% favorite = Favorite.find_by(user_id: current_user.id, video_id: video.id) %>
+    <%= link_to unlove_path(video.id), method: :delete, id: "favorite-button", remote: true do %>
+      <div class='favorite-info'>お気に入り動画</div>
+    <% end %>
+  <% else %>
+    <%= link_to love_path(video.id), method: :post, id: "favorite-button", remote: true do %>
+      <div class='unfavorite-info'> お気に入りに追加>></div>
+    <% end %>
+  <% end %>
+<% else %>
+    
+<% end %>

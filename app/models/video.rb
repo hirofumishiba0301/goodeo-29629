@@ -5,6 +5,7 @@ class Video < ApplicationRecord
   belongs_to_active_hash :category
   has_one_attached :movie
   has_many :goodjobs, dependent: :destroy
+  has_many :favorites
 
   with_options presence: true do
     validates :name, :info, :movie

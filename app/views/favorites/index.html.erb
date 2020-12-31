@@ -1,9 +1,10 @@
 <%= render "shared/header" %>
 
-<h2 class='title'><a class="subtitle" href="/videos/new">新着オススメ動画</a></h2>
+<h2 class='title'><a class="subtitle" href="/videos/new">お気に入り動画一覧</a></h2>
 <%# 動画一覧 %>
     <% if @videos.present? %>
       <% @videos.each do |video| %>
+        <% if Favorite.find_by(user_id: current_user.id, video_id: video.id) %>
             <div class='newtopics-video-contents'>
               <%= link_to video_path(video.id),method: :get do %>
                   <div class='video-img-content'>
@@ -13,7 +14,7 @@
               <% end %>
                     <div class='video-info'>
                       <h2 class='video-name'> <%= video.name %></h2>
-                      <div class='video-category' >
+                      <div class='favorite-info' >
                         <%= render partial: "favorites/favorite", locals:{video: video} %>
                       </div>
                       <div class='video-name-date'>
@@ -29,6 +30,7 @@
                     </div>
                   </div>
             </div>
+        <% end %>  
       <% end %>
     <% end %>
 
