@@ -6,7 +6,7 @@
     <% end %>
   <% else %>
     <%= link_to love_path(video.id), method: :post, id: "favorite-button", remote: true do %>
-      <div class='favorite-info'> お気に入りに追加</div>
+      <div class='unfavorite-info'> お気に入りに追加>></div>
     <% end %>
   <% end %>
 <% else %>

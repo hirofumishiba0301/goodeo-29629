@@ -7,7 +7,7 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    @favorite = Favorite.create(user_id: current_user.id, video_id: @video.id)
+    @favorite = Favorite.create(user_id: current_user.id, video_id: params[:video_id])
     #@favorites = Favorite.where(video_id: params[:video_id])
     respond_to do |format|
       format.js {render inline: "location.reload();" }

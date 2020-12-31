@@ -1,3 +1,13 @@
-// Place all the styles related to the favorites controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.unfavorite-info{
+  font-size: 20px;
+  background-color: white;
+  color: darkred;
+}
+
+.favorite-info{
+  font-size: 20px;
+  background-color: darkred;
+  color: aliceblue;
+  text-align: center;
+  font-weight: 900;
+}

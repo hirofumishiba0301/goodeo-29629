@@ -43,6 +43,10 @@ a {
   font-size: 30px
 }
 
+.favorite-info{
+  text-decoration: none;
+}
+
 .video-category{
   font-family: 'Sacramento', cursive;
 }
@@ -51,10 +55,8 @@ a {
   color: darkred;
   font-family: 'Sacramento', cursive;
   border-radius: 3px darkred;
-  background-color: ghostwhite;
-  font-size: x-large;
-  height: 5vh;
-  width: 7vh;
+  height: 7vh;
+  width: 15vw;
   text-align: center;
 }
 
