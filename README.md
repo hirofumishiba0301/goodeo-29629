@@ -44,23 +44,12 @@
 | Column        | Type       | Options                        |
 | ------------- | -----------| ------------------------------ |
 | video         | references | foreign_key: true              |
-| user          | references | foreign_key: true              |
-|               | integer    |                                |
-
-### Association
-- belongs_to :video
-- belongs_to :user
-
-## thumbnails テーブル
-
-| Column        | Type       | Options                        |
-| ------------- | -----------| ------------------------------ |
-| video         | references | foreign_key: true              |
 | name          | string     | null: false                    |
 |               | integer    |                                |
 
 ### Association
 - belongs_to :video
+- belongs_to :user
 
 ## tags テーブル
 
@@ -93,26 +82,13 @@
 
 | Column        | Type       | Options                        |
 | ------------- | -----------| ------------------------------ |
-| name          | string     | null: false                    |
+| video         | references | foreign_key: true              |
 | user          | references | foreign_key: true              |
-| info          | text       | null: false                    |
 
 ### Association
 - belongs_to :user
 - has_many :videos, through: :video_favorites
 - has_many :video_favorites
-
-## video_favorites テーブル
-
-| Column        | Type       | Options                        |
-| ------------- | -----------| ------------------------------ |
-| video         | references | foreign_key: true              |
-| favorite      | references | foreign_key: true              |
-
-
-### Association
-- has_many :videos
-- has_many :favorites
 
 
 This README would normally document whatever steps are necessary to get the
