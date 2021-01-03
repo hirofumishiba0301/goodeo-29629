@@ -55,6 +55,18 @@
         </div>
         <%# /動画のカテゴリ %>
 
+        <%# タグ追加 %>
+        <div class="new-items">
+          <div class="items-explain">
+            <div class="weight-bold-text">
+              タグ追加フォーム
+              <span class="indispensable">必須</span>
+            </div>
+            <%= f.text_field :tag_list, value: @video.tag_list.join(','), class:"items-text", id:"item-info", placeholder:"タグ（必須,を追記して複数作成可能）" %>
+          </div>
+        </div>
+        <%# /タグ追加 %>
+
         <%# 下部ボタン %>
         <div class="sell-btn-contents">
           <%= f.submit "編集する" ,class:"sell-btn" %>
