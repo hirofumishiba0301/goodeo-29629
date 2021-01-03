@@ -4,11 +4,14 @@ class VideosController < ApplicationController
 
   def index
     @videos = Video.includes(:user).order('created_at DESC')
+    @tags = Video.tag_counts_on(:tags).order('count DESC')
+    if @tag = params[:tag]   # タグ検索用
+      @video = Video.tagged_with(params[:tag])   # タグに紐付く投稿
+    end
   end
 
   def new
     @video = Video.new
-    #@video_thumbnail = VideoThumbnail.new
   end
 
   def create
@@ -21,6 +24,7 @@ class VideosController < ApplicationController
   end
 
   def show
+    @tags = @video.tag_counts_on(:tags)
   end
 
   def destroy
@@ -44,15 +48,6 @@ class VideosController < ApplicationController
     end
   end
 
-    #@video_thumbnail = VideoThumbnail.new(video_thumbnail_params)
-    #if @video_thumbnail.valid?
-     # @video_thumbnail.save
-      #redirect_to root_path
-    #else
-     # render :new
-    #end
-  #end
-
   private
 
   def set_video
@@ -60,10 +55,6 @@ class VideosController < ApplicationController
   end
 
   def video_params
-    params.require(:video).permit(:movie, :name, :info, :category_id, :goodjobs_count, :views).merge(user_id: current_user.id)
+    params.require(:video).permit(:movie, :name, :info, :category_id, :goodjobs_count, :views, :tag_list).merge(user_id: current_user.id)
   end
-  #def video_thumbnail_params
-   # params.require(:video_thumbnail).permit(:movie, :name, :info, :category_id, :goodjob, :poster, :views).merge(user_id: current_user.id)
-  #end
-
 end

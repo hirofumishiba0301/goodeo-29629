@@ -6,6 +6,8 @@ class Video < ApplicationRecord
   has_one_attached :movie
   has_many :goodjobs, dependent: :destroy
   has_many :favorites
+  acts_as_taggable
+  acts_as_taggable_on :skills, :interests
 
   with_options presence: true do
     validates :name, :info, :movie

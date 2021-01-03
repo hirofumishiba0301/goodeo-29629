@@ -57,12 +57,23 @@ a {
   border-radius: 3px darkred;
   height: 7vh;
   width: 15vw;
-  text-align: center;
+  text-align: start;
 }
 
 /*カテゴリ一覧*/
 .category-video-contents{
   height: 25vh;
+}
+
+/*タグ*/
+
+.tags-table{
+  height: 5vh;
+  list-style: none;
+  background-color: #FFF;
+  color: darkred;
+  text-decoration-color: #FFF;
+  border-bottom: 1.5px solid darkred;
 }
 
 /* 商品一覧 */

@@ -1,34 +1,68 @@
 <%= render "shared/header" %>
 
-<h2 class='title'><a class="subtitle" href="/videos/new">新着オススメ動画</a></h2>
+<h2 class='title'><a class="subtitle" href="/videos">新着オススメ動画</a></h2>
+<div class='tags-table'>
+  タグ： <%= render partial: "shared/tags", locals:{tags: @tags, video: @video} %>
+</div>
 <%# 動画一覧 %>
     <% if @videos.present? %>
-      <% @videos.each do |video| %>
-            <div class='newtopics-video-contents'>
-              <%= link_to video_path(video.id),method: :get do %>
-                  <div class='video-img-content'>
-                      <% if video.movie.attached? %>
-                        <%= video_tag rails_blob_path(video.movie), size:"1000x550", autoplay: false, muted: false, controls: true, loop: true %></video>
-                      <% end %>
-              <% end %>
-                    <div class='video-info'>
-                      <h2 class='video-name'> <%= video.name %></h2>
-                      <div class='video-category' >
-                        <%= render partial: "favorites/favorite", locals:{video: video} %>
-                      </div>
-                      <div class='video-name-date'>
-                        <%= video.user.nickname %>
-                        (<%= video.created_at %>)
-                      </div>
-                      <div class='video-category'>
-                        <span>Category; <%= video.category.name %></span>
-                      </div>
-                      <div class='video-goodjob-counts' >
-                        <%= render partial: "goodjobs/goodjob", locals:{video: video} %>
+      <% if @video.present? %>
+      <h2 class='title'><%= "タグ:#{@tag} 検索結果" %></h2>
+        <% @video.each do |video| %>
+              <div class='newtopics-video-contents'>
+                <%= link_to video_path(video.id),method: :get do %>
+                    <div class='video-img-content'>
+                        <% if video.movie.attached? %>
+                          <%= video_tag rails_blob_path(video.movie), size:"1000x550", autoplay: false, muted: false, controls: true, loop: true %></video>
+                        <% end %>
+                <% end %>
+                      <div class='video-info'>
+                        <h2 class='video-name'> <%= video.name %></h2>
+                        <div class='video-category' >
+                          <%= render partial: "favorites/favorite", locals:{video: video} %>
+                        </div>
+                        <div class='video-name-date'>
+                          <%= video.user.nickname %>
+                          (<%= video.created_at %>)
+                        </div>
+                        <div class='video-category'>
+                          <span>Category; <%= video.category.name %></span>
+                        </div>
+                        <div class='video-goodjob-counts' >
+                          <%= render partial: "goodjobs/goodjob", locals:{video: video} %>
+                        </div>
                       </div>
                     </div>
-                  </div>
-            </div>
+              </div>
+        <% end %>
+      <% else %>
+        <% @videos.each do |video| %>
+              <div class='newtopics-video-contents'>
+                <%= link_to video_path(video.id),method: :get do %>
+                    <div class='video-img-content'>
+                        <% if video.movie.attached? %>
+                          <%= video_tag rails_blob_path(video.movie), size:"1000x550", autoplay: false, muted: false, controls: true, loop: true %></video>
+                        <% end %>
+                <% end %>
+                      <div class='video-info'>
+                        <h2 class='video-name'> <%= video.name %></h2>
+                        <div class='video-category' >
+                          <%= render partial: "favorites/favorite", locals:{video: video} %>
+                        </div>
+                        <div class='video-name-date'>
+                          <%= video.user.nickname %>
+                          (<%= video.created_at %>)
+                        </div>
+                        <div class='video-category'>
+                          <span>Category; <%= video.category.name %></span>
+                        </div>
+                        <div class='video-goodjob-counts' >
+                          <%= render partial: "goodjobs/goodjob", locals:{video: video} %>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+        <% end %>
       <% end %>
     <% end %>
 

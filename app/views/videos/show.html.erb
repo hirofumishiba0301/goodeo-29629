@@ -24,6 +24,9 @@
                       <div class='video-category'>
                         <span>Info; <%= @video.info %></span>
                       </div>
+                      <div class='tags-table'>
+                        タグ <%= render partial: "shared/tags", locals:{tags: @tags, video: @video} %>
+                      </div>
                     </div>
                   </div>
             </div>
