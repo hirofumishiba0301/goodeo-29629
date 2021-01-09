@@ -1,7 +1,7 @@
 <%= search_form_for @q, url: videos_search_path do |f| %>
-<%= f.label :name_const, '動画名' %>
+<%= f.label :name_const, '動画名:', class: "title" %>
 <%= f.search_field :name_cont %>
-<%= f.label :category_id_eq, 'カテゴリ' %>
+<%= f.label :category_id_eq, 'カテゴリ:', class: "title"  %>
 <%= f.collection_radio_buttons :category_id_eq, @categories, :id, :name %>
 <%= f.submit '検索' %>
 <% end %>
