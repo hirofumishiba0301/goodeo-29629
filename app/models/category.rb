@@ -4,7 +4,7 @@ class Category < ActiveHash::Base
     { id: 2, name: 'sports' },
     { id: 3, name: 'music' },
     { id: 4, name: 'animation' },
-    { id: 5, name: 'beaty' },
+    { id: 5, name: 'beauty' },
     { id: 6, name: 'comedy' },
     { id: 7, name: 'healing' },
   ]

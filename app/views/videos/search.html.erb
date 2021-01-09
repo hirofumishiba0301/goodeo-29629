@@ -1,0 +1,41 @@
+<%= render "shared/header" %>
+<h1 class='title'>
+  検索結果
+</h1>
+<%# 検索結果の個数で条件分岐 %>
+<% if @results.length !=0 %>
+  <% @results.each do |result| %>
+    <td>
+    <br>
+              <div class='newtopics-video-contents'>
+                <%= link_to video_path(result.id),method: :get do %>
+                    <div class='video-img-content'>
+                        <% if result.movie.attached? %>
+                          <%= video_tag rails_blob_path(result.movie), size:"1000x550", autoplay: false, muted: false, controls: true, loop: true %></video>
+                        <% end %>
+                <% end %>
+                      <div class='video-info'>
+                        <h2 class='video-name'> <%= result.name %></h2>
+                        <div class='video-category' >
+                          <%= render partial: "favorites/favorite", locals:{video: result} %>
+                        </div>
+                        <div class='video-name-date'>
+                          <%= result.user.nickname %>
+                          (<%= result.created_at %>)
+                        </div>
+                        <div class='video-category'>
+                          <span>Category; <%= result.category.name %></span>
+                        </div>
+                        <div class='video-goodjob-counts' >
+                          <%= render partial: "goodjobs/goodjob", locals:{video: result} %>
+                        </div>
+                      </div>
+                    </div>
+              </div>
+  <% end %>
+<% else %>
+  該当する動画はありません
+<% end %>
+<br>
+
+<%= render "shared/footer" %>

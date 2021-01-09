@@ -1,6 +1,7 @@
 <%= render "shared/header" %>
 
 <h2 class='title'><a class="subtitle" href="/videos">新着オススメ動画</a></h2>
+  <%= render partial: "shared/search_video", locals:{video: @videos} %>
 <div class='tags-table'>
   タグ： <%= render partial: "shared/tags", locals:{tags: @tags, video: @video} %>
 </div>

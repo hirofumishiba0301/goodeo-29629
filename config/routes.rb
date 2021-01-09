@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'videos#index'
+  get 'videos/search'
+
   resources :users do
     resources :favorites
   end
