@@ -5,7 +5,7 @@ class Video < ApplicationRecord
   belongs_to_active_hash :category
   has_one_attached :movie
   has_many :goodjobs, dependent: :destroy
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   acts_as_taggable
   acts_as_taggable_on :skills, :interests
 
@@ -24,9 +24,18 @@ class Video < ApplicationRecord
       movie.content_type = nil # delete the uploaded file
       errors.add(:movie, 'content_type is not video')
     end
+
+    if size?
+      movie.content_type = nil # delete the uploaded file
+      errors.add(:movie, 'oversize limited (3MB)')
+    end
   end
 
   def movie?
     %w[video/quicktime].include?(movie.blob.content_type)
+  end
+
+  def size?
+      movie.blob.byte_size > (3 * 1024 * 1024) 
   end
 end
